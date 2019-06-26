@@ -1,0 +1,21 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/adduser.png</file>
+        <file>images/biceps.png</file>
+        <file>images/chest.png</file>
+        <file>images/Dark.png</file>
+        <file>images/fuel.png</file>
+        <file>images/fuel1.png</file>
+        <file>images/graph.png</file>
+        <file>images/home.png</file>
+        <file>images/leg.png</file>
+        <file>images/man.png</file>
+        <file>images/press.png</file>
+        <file>images/running.png</file>
+        <file>images/Sun.png</file>
+        <file>images/train.png</file>
+        <file>images/water.png</file>
+        <file>images/water1.png</file>
+        <file>images/woman.png</file>
+    </qresource>
+</RCC>
