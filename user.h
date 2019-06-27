@@ -6,17 +6,20 @@
 enum class Sex
 {
     male,
-    female
+    female,
+    unset
+
+
 };
 
 struct User
 {
     QString name;
-    int typeOfTraining;
+    int typeOfTraining=0;
     int age;
     int weight;
     int height;
-    Sex sex;
+    Sex sex=Sex::unset;
 
 };
 

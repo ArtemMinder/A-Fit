@@ -46,7 +46,7 @@ void Logic::saveUser(const User& user){
       if(user.sex==Sex::male){
           file.write("Мужской");
       }
-      if(user.sex==Sex::female){
+     else if(user.sex==Sex::female){
           file.write("Женский");
       }
       else qDebug() << "Пол не выбран";
@@ -128,11 +128,12 @@ Sex Logic::getSex(){
      if(sex=="Мужской"){
       return Sex::male;
      }
-     else {
-     return Sex::female;
+     if(sex=="Женский"){
+      return Sex::female;
      }
     }
-     return Sex::male;
+    return Sex::unset;
+
 }
 int Logic::getTypeOFTrain(){
     QFile inputFile("UserData.txt");

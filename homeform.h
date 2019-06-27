@@ -2,6 +2,11 @@
 #define HOMEFORM_H
 
 #include <QDialog>
+#include <QPieSeries>
+#include <QChartView>
+#include <QStackedBarSeries>
+#include <QPieSlice>
+#include <QChart>
 #include "logic.h"
 
 namespace Ui {
@@ -26,8 +31,6 @@ private slots:
 
     void on_reportButton_clicked();
 
-    void on_warmUpInfo_triggered(QAction *arg1);
-
     void on_warmUpInfo_clicked();
 
     void on_bicepsInfo_clicked();
@@ -41,6 +44,12 @@ private slots:
 private:
     Ui::HomeForm *ui;
     Logic logic;
+    QtCharts::QPieSeries pieSeries;
+    QtCharts::QStackedBarSeries barPlotSeries;
+    QtCharts::QChart chart1;
+    QtCharts::QChartView pieChartView;
+    QtCharts::QChartView barChartView;
+
 };
 
 #endif // HOMEFORM_H
