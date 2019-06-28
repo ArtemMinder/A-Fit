@@ -7,6 +7,11 @@
 #include <QStackedBarSeries>
 #include <QPieSlice>
 #include <QChart>
+#include <QBarSet>
+#include <QtCharts/QBarSeries>
+#include <QtCharts/QBarSet>
+#include <QBarCategoryAxis>
+#include <QValueAxis>
 #include "logic.h"
 
 namespace Ui {
@@ -41,6 +46,10 @@ private slots:
 
     void on_legsInfo_clicked();
 
+    void on_dtButton_clicked();
+
+    void on_White_2_clicked();
+
 private:
     Ui::HomeForm *ui;
     Logic logic;
@@ -49,6 +58,9 @@ private:
     QtCharts::QChart chart1;
     QtCharts::QChartView pieChartView;
     QtCharts::QChartView barChartView;
+    QtCharts::QChart barChart;
+    QtCharts::QBarCategoryAxis axisX;
+    QtCharts::QValueAxis axisY;
 
 };
 

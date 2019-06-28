@@ -8,6 +8,7 @@
 #include <QXmlStreamAttribute>
 #include <QMessageBox>
 #include <QFile>
+#include <QVector>
 #include "training.h"
 
 
@@ -17,11 +18,12 @@ public:
  Logic();
 
 void saveUser(const User& user);
-QString warmUP(int typeOfTraining);
-QString biceps(int typeOfTraining);
-QString chest(int typeOfTraining);
-QString press(int typeOfTraining);
-QString legs(int typeOfTraining);
+QString warmUP(int typeOfTrain);
+QString biceps(int typeOfTrain);
+QString chest(int typeOfTrain);
+QString press(int typeOfTrain);
+QString legs(int typeOfTrain);
+void writeStat(const Training& training);
 int trainingCounter(const Training& training);
 void clear();
 QString getName();
@@ -35,6 +37,6 @@ double bmr(Sex sex,int age,int weight, int height, int typeOfTrain);
 int b(int typeOfTrain);
 int j(int typeOfTrain);
 int u(int typeOfTrain);
-
+QVector<int> getStat();
 };
 #endif // LOGIC_H

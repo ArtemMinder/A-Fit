@@ -13,13 +13,13 @@ MainDial::MainDial(QWidget *parent, Logic newLogic) :
 
 {
     ui->setupUi(this);
-    //if(logic.getName()!=QString()){home->open();}
-
     QObject::connect(ui->ageSlider_2, SIGNAL(valueChanged(int)),ui->ageNumber_2,SLOT(display(int)));
     QObject::connect(ui->massSlider_2, SIGNAL(valueChanged(int)),ui->massNumber_2,SLOT(display(int)));
-    QObject::connect(ui->heightSlider_2, SIGNAL(valueChanged(int)),ui->heightNumber_2,SLOT(display(int)));   
+    QObject::connect(ui->heightSlider_2, SIGNAL(valueChanged(int)),ui->heightNumber_2,SLOT(display(int)));
+    home= new HomeForm(logic,parentWidget());
+   // if(logic.getAge()!=0){home->open();
+   // this->close();}
 }
-
 
 
 MainDial::~MainDial()
@@ -50,8 +50,8 @@ void MainDial::on_confirmButton_2_clicked()
     else user.sex=(Sex::male);
     logic.saveUser(user);
     home= new HomeForm(logic,parentWidget());
-     if(logic.getName()==QString()||logic.getTypeOFTrain()==0||logic.getSex()==Sex::unset){
-         QMessageBox::warning(this,"Ключевые поля не заполнены","Пожалуйста, введите недостающие данные в форму");
+    if(logic.getName()==QString()||logic.getTypeOFTrain()==0||logic.getSex()==Sex::unset){
+    QMessageBox::warning(this,"Ключевые поля не заполнены","Пожалуйста, введите недостающие данные в форму");
      }
        else{  home->open();
     this->close();

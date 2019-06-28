@@ -3,6 +3,7 @@
 #include "user.h"
 #include "QDebug"
 #include <QTextCodec>
+#include <QVector>
 
 
 Logic::Logic()
@@ -46,10 +47,10 @@ void Logic::saveUser(const User& user){
       if(user.sex==Sex::male){
           file.write("Мужской");
       }
-     else if(user.sex==Sex::female){
+      if(user.sex==Sex::female){
           file.write("Женский");
       }
-      else qDebug() << "Пол не выбран";
+      else file.write("Пол не выбран");
      file.close();
 }}
 QString Logic::getName(){
@@ -131,6 +132,7 @@ Sex Logic::getSex(){
      if(sex=="Женский"){
       return Sex::female;
      }
+     else return Sex::unset;
     }
     return Sex::unset;
 
@@ -174,7 +176,7 @@ double Logic::bmr(Sex sex,int age,int weight, int height, int typeOfTrain){
 
 }
 void clear(){
-    QFile file("UserData.txt");
+    QFile file("TrainingStatistic.txt");
     if (file.open(QIODevice::WriteOnly | QIODevice::Truncate))
     file.close();
 }
@@ -214,35 +216,35 @@ int Logic::u(int typeOfTrain){
     }
     return 0;
 }
-QString Logic::warmUP(int typeOfTraining){
-    if(typeOfTraining == 1) return  "1111 1111111111111";
-    if(typeOfTraining == 2) return  "";
-     if(typeOfTraining == 3) return  "";
-     return QString();
+QString Logic::warmUP(int typeOfTrain){
+    if(typeOfTrain == 1) return  "111";
+    if(typeOfTrain == 2) return  "222";
+    if(typeOfTrain == 3) return  "333";
+    else return QString();
 }
-QString Logic::biceps(int typeOfTraining){
-    if(typeOfTraining == 1) return  "";
-    if(typeOfTraining == 2) return  "";
-     if(typeOfTraining == 3) return  "";
-     return QString();
+QString Logic::biceps(int typeOfTrain){
+    if(typeOfTrain == 1) return  "444";
+    if(typeOfTrain == 2) return  "555";
+    if(typeOfTrain == 3) return  "666";
+    else return QString();
 }
-QString Logic::chest(int typeOfTraining){
-    if(typeOfTraining == 1) return  "";
-    if(typeOfTraining == 2) return  "";
-     if(typeOfTraining == 3) return  "";
-     return QString();
+QString Logic::chest(int typeOfTrain){
+    if(typeOfTrain == 1) return  "777";
+    if(typeOfTrain == 2) return  "888";
+    if(typeOfTrain == 3) return  "8585";
+    else return QString();
 }
-QString Logic::press(int typeOfTraining){
-    if(typeOfTraining == 1) return  "";
-    if(typeOfTraining == 2) return  "";
-     if(typeOfTraining == 3) return  "";
-     return QString();
+QString Logic::press(int typeOfTrain){
+    if(typeOfTrain == 1) return  "999";
+    if(typeOfTrain == 2) return  "1010";
+    if(typeOfTrain == 3) return  "111111";
+    else return QString();
 }
-QString Logic::legs(int typeOfTraining){
-    if(typeOfTraining == 1) return  "";
-    if(typeOfTraining == 2) return  "";
-     if(typeOfTraining == 3) return  "";
-     return QString();
+QString Logic::legs(int typeOfTrain){
+    if(typeOfTrain == 1) return  "121212";
+    if(typeOfTrain == 2) return  "131313";
+    if(typeOfTrain == 3) return  "1414";
+    else return QString();
 }
 int Logic::trainingCounter(const Training& training){
     int counter = 0;
@@ -253,4 +255,70 @@ int Logic::trainingCounter(const Training& training){
         if(training.legs==true) counter += 1;
         counter *= 20;
         return counter;
+}
+void Logic::writeStat(const Training& training){
+    QFile file ("TrainingStatistic.txt");
+    QStringList strList;
+    /*Считываем исходный файл в контейнер*/
+    if ((file.exists())&&(file.open(QIODevice::ReadOnly)))
+    { while(!file.atEnd())
+        {
+            strList << file.readLine();
+
+
+        }
+        file.close();
+
+    }
+    QFile inputFile("TrainingStatistic.txt");
+    if (inputFile.open(QIODevice::ReadOnly)){
+        QTextStream in(&inputFile);
+        in.setCodec(QTextCodec::codecForName("UTF-8"));
+        QString str = in.readAll();
+        QTextStream s(&str);
+        QString count;
+        for (size_t i = 0; i < 7; i++)
+            count= s.readLine();
+        if(count!=QString()){QFile file("TrainingStatistic.txt");
+            if (file.open(QIODevice::WriteOnly | QIODevice::Truncate))
+                file.close();}
+        inputFile.close();
+        if (file.open(QIODevice::Append))
+        {
+        QString newWarmUp = QString::number(training.warmUp);
+        file.write(newWarmUp.toUtf8());
+        file.write(" ");
+        QString newBiceps = QString::number(training.biceps);
+        file.write(newBiceps.toUtf8());
+        file.write(" ");
+        QString newChest = QString::number(training.chest);
+        file.write(newChest.toUtf8());
+        file.write(" ");
+        QString newPress = QString::number(training.press);
+        file.write(newPress.toUtf8());
+        file.write(" ");
+        QString newLegs = QString::number(training.legs);
+        file.write(newLegs.toUtf8());
+        file.write("\n");
+        file.close();
+         }
+        file.close();
+}};
+ QVector<int> Logic::getStat(){
+    char ch=0;
+     char s;
+     QVector<int> vector(35);
+      QFile file ("TrainingStatistic.txt");
+     if ((file.exists())&&(file.open(QIODevice::ReadOnly)))
+     { while(!file.atEnd())
+      {
+           if (char(ch)!='\n') s+=int(ch);  //Считываем символ из файла и сразу проверяем его на признак переноса строки.
+           else {
+                    vector.fill(s); //Если текущий символ перенос, то записываем строку в вектор
+                    s=NULL; //Очищаем строку
+           }
+       }    vector.push_back(s); //Дописываем последнюю строку в вектор.
+       file.close();
+}
+      return vector;
 }

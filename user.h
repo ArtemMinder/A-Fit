@@ -8,8 +8,6 @@ enum class Sex
     male,
     female,
     unset
-
-
 };
 
 struct User

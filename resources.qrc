@@ -17,5 +17,7 @@
         <file>images/water.png</file>
         <file>images/water1.png</file>
         <file>images/woman.png</file>
+        <file>images/refresh.png</file>
+        <file>images/Tool.png</file>
     </qresource>
 </RCC>

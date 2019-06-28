@@ -81,7 +81,7 @@
        <item>
         <widget class="QRadioButton" name="fRB_2">
          <property name="text">
-          <string>F</string>
+          <string>Ж</string>
          </property>
         </widget>
        </item>
@@ -101,7 +101,7 @@
      <rect>
       <x>10</x>
       <y>80</y>
-      <width>221</width>
+      <width>211</width>
       <height>31</height>
      </rect>
     </property>
@@ -168,7 +168,7 @@
        <item row="0" column="0">
         <widget class="QLabel" name="label_8">
          <property name="text">
-          <string>Age</string>
+          <string>Возраст</string>
          </property>
         </widget>
        </item>
@@ -188,7 +188,7 @@
           <enum>QFrame::NoFrame</enum>
          </property>
          <property name="text">
-          <string>Mass</string>
+          <string>Вес</string>
          </property>
         </widget>
        </item>
@@ -205,7 +205,7 @@
        <item row="2" column="0">
         <widget class="QLabel" name="label_10">
          <property name="text">
-          <string>Height</string>
+          <string>Рост</string>
          </property>
         </widget>
        </item>
@@ -223,7 +223,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; color:#0000ff;&quot;&gt;Выберите цель выших тренировок:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; color:#0000ff;&quot;&gt;Выберите цель ваших тренировок:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <widget class="QWidget" name="gridLayoutWidget">
