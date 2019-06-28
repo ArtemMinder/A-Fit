@@ -47,7 +47,7 @@ void Logic::saveUser(const User& user){
       if(user.sex==Sex::male){
           file.write("Мужской");
       }
-      if(user.sex==Sex::female){
+     else if(user.sex==Sex::female){
           file.write("Женский");
       }
       else file.write("Пол не выбран");

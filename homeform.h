@@ -7,6 +7,7 @@
 #include <QStackedBarSeries>
 #include <QPieSlice>
 #include <QChart>
+
 #include <QBarSet>
 #include <QtCharts/QBarSeries>
 #include <QtCharts/QBarSet>
@@ -61,7 +62,6 @@ private:
     QtCharts::QChart barChart;
     QtCharts::QBarCategoryAxis axisX;
     QtCharts::QValueAxis axisY;
-
 };
 
 #endif // HOMEFORM_H
