@@ -46,7 +46,9 @@ void MainDial::on_confirmButton_2_clicked()
     if(ui->fRB_2->isChecked()){
         user.sex=(Sex::female);
     }
-    else user.sex=(Sex::male);
+    if(ui->menRB_2->isChecked()){
+              user.sex=Sex::male;
+            }
     logic.saveUser(user);
     home= new HomeForm(logic,parentWidget());
     if(logic.getName()==QString()||logic.getTypeOFTrain()==0||logic.getSex()==Sex::unset){

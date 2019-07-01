@@ -51,6 +51,8 @@ private slots:
 
     void on_White_2_clicked();
 
+    void on_resetButton_2_clicked();
+
 private:
     Ui::HomeForm *ui;
     Logic logic;

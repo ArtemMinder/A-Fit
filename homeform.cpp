@@ -59,8 +59,25 @@ HomeForm::HomeForm(const Logic& in_logic, QWidget *parent) :
     pieSeries.setHorizontalPosition(0.45);
     pieChartView.setChart(new QChart());
     ui->verticalLayout->addWidget(&pieChartView);
+    QBarSet *bar1 = new QBarSet("Разминка");
+    QBarSet *bar2 = new QBarSet("Бицепс");
+    QBarSet *bar3 = new QBarSet("Грудь");
+    QBarSet *bar4 = new QBarSet("Пресс");
+    QBarSet *bar5 = new QBarSet("Ноги");
+    *bar1<<20;
+    *bar2<<20;
+    *bar3<<20;
+    *bar4<<20;
+    *bar5<<20;
+    barPlotSeries.append(bar1);
+    barPlotSeries.append(bar2);
+    barPlotSeries.append(bar3);
+    barPlotSeries.append(bar4);
+    barPlotSeries.append(bar5);
+    barChart.addSeries(&barPlotSeries);
     barChartView.setChart(&barChart);
     ui->verticalLayout_2->addWidget(&barChartView);
+
 }
 
 HomeForm::~HomeForm()
@@ -133,105 +150,43 @@ void HomeForm::on_graph_2_clicked()
     if(ui->legsCB->isChecked()){
         training.legs=true;
     }
-    *bar1 <<  training.warmUp*20;
-    *bar2  << training.biceps*20;
-    *bar3  << training.chest*20;
-    *bar4  << training.press*20;
-    *bar5  << training.legs*20;
-    *bar1 << 20;
-    *bar2 << 20;
-    *bar3 << 20;
-    *bar4 << 20;
-    *bar5 << 20;
-    /**bar1 << (logic.vector().value(1))*20;
-     *bar2 << logic.vector().value(2);
-     *bar3 << logic.vector().value(3);
-     *bar4 << logic.vector().value(4);
-     *bar5 << logic.vector().value(5);*/
-    // QStackedBarSeries *series4 = new QStackedBarSeries();
+    for (int i=0;i<35;) {
+          *bar1 << (logic.getStat().value(i))*20;
+           i++;
+          *bar2 << (logic.getStat().value(i))*20;
+           i++;
+          *bar3 << (logic.getStat().value(i))*20;
+           i++;
+          *bar4 << (logic.getStat().value(i))*20;
+           i++;
+          *bar5 << (logic.getStat().value(i))*20;
+           i++;
+        }
+    *bar1<<20;
+    *bar1<<20;
+    *bar1<<20;
+    *bar1<<20;
+    *bar1<<20;
+    *bar1<<20;
     barPlotSeries.append(bar1);
     barPlotSeries.append(bar2);
     barPlotSeries.append(bar3);
     barPlotSeries.append(bar4);
     barPlotSeries.append(bar5);
-    //  QChart *chart4 = new QChart();
     barChart.addSeries(&barPlotSeries);
-    //  chart4->setTitle("Simple stackedbarchart example");
     barChart.setAnimationOptions(QChart::SeriesAnimations);
     QStringList categories;
     categories << "1" << "2" << "3" << "4" << "5" << "6"<<"7";
-    // QBarCategoryAxis *axisX = new QBarCategoryAxis();
     axisX.append(categories);
     barChart.addAxis(&axisX, Qt::AlignBottom);
     barPlotSeries.attachAxis(&axisX);
-    //QValueAxis *axisY = new QValueAxis();
     barChart.addAxis(&axisY, Qt::AlignLeft);
     barPlotSeries.attachAxis(&axisY);
     barChart.legend()->setVisible(true);
     barChart.legend()->setAlignment(Qt::AlignRight);
-    //  QChartView *chartView2 = new QChartView();
     barChartView.setChart(&barChart);
     barChartView.setRenderHint(QPainter::Antialiasing);
     barChartView.repaint();
-
-//    //slice3->setExploded();
-//    //slice3->setLabelVisible();
-//    slice3->setPen(QPen(Qt::darkBlue, 1));
-//    slice3->setBrush(Qt::blue);
-//    slice3->setLabel(QString("%1% Углеводы").arg(100*slice3->percentage(), 0, 'f', 1));
-
-//    pieChartView.setChart(&chart1);
-//    pieChartView.setRenderHint(QPainter::Antialiasing);
-//    pieChartView.repaint();
-
-//    //QChartView *chartView = new QChartView(chart);
-//    pieChartView.setRenderHint(QPainter::Antialiasing);
-//    //pieChartView.repaint();
-//   // ui->verticalLayout->addWidget(&pieChartView);
-
-
-
-//                 QBarSet *set0 = new QBarSet("Разминка");
-//                 QBarSet *set1 = new QBarSet("Бицепс");
-//                 QBarSet *set2 = new QBarSet("Грудь");
-//                 QBarSet *set3 = new QBarSet("Пресс");
-//                 QBarSet *set4 = new QBarSet("Ноги");
-//                 Training training;
-//                 *set0 << training.warmUp*20;
-//                 *set1 << training.biceps*20;
-//                 *set2 << training.chest*20;
-//                 *set3 << training.press*20;
-//                 *set4 << training.legs*20;
-//                 *set0 << 20;
-//                 *set1 << 20;
-//                 *set2 << 20;
-//                 *set3 << 20;
-//                 *set4 << 20;
-//                 QStackedBarSeries *series4 = new QStackedBarSeries();
-//                 series4->append(set0);
-//                 series4->append(set1);
-//                 series4->append(set2);
-//                 series4->append(set3);
-//                 series4->append(set4);
-//                 QChart *chart4 = new QChart();
-//                 chart4->addSeries(series4);
-//                 //  chart4->setTitle("Simple stackedbarchart example");
-//                 chart4->setAnimationOptions(QChart::SeriesAnimations);
-//                 QStringList categories;
-//                 categories << "1" << "2" << "3" << "4" << "5" << "6"<<"7";
-//                 QBarCategoryAxis *axisX = new QBarCategoryAxis();
-//                 axisX->append(categories);
-//                 chart4->addAxis(axisX, Qt::AlignBottom);
-//                 series4->attachAxis(axisX);
-//                 QValueAxis *axisY = new QValueAxis();
-//                 chart4->addAxis(axisY, Qt::AlignLeft);
-//                 series4->attachAxis(axisY);
-//                 chart4->legend()->setVisible(true);
-//                 chart4->legend()->setAlignment(Qt::AlignRight);
-//                 QChartView *chartView2 = new QChartView();
-//                 chartView2->setChart(chart4);
-//                 chartView2->setRenderHint(QPainter::Antialiasing);
-//                 ui->verticalLayout_2->replaceWidget(&barChartView,chartView2);
 }
 
 void HomeForm::on_reportButton_clicked()
@@ -301,4 +256,9 @@ void HomeForm::on_White_2_clicked()
          p.setColor(QPalette::Highlight, QColor(142,45,197));
          p.setColor(QPalette::ButtonText, QColor(255,255,255));
          qApp->setPalette(p);
+}
+
+void HomeForm::on_resetButton_2_clicked()
+{
+    logic.clear();
 }
